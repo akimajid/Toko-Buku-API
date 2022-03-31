@@ -1,47 +1,65 @@
-const { Tag } = require("../lib/sequelize")
+const { Tag } = require("../lib/sequelize");
 
 const tagControllers = {
-    getAllTag: async (req, res) => {
-        try {
-            const findTags = await Tag.findAndCountAll({
-                where: {
-                    ...req.query
-                }
-            })
+  getAllTag: async (req, res) => {
+    try {
+      const findTags = await Tag.findAndCountAll({
+        where: {
+          ...req.query,
+        },
+      });
 
-            res.status(200).json({
-                message: "Find tags",
-                result: findTags
-            })
-        } catch (err) {
-            console.log(err)
-            return res.status(500).json({
-                message: "Server error"
-            })
-        }
-    },
-    createNewTag: async (req, res) => {
-        try {
-            const { tag_name } = req.body
+      res.status(200).json({
+        message: "Find tags",
+        result: findTags,
+      });
+    } catch (err) {
+      console.log(err);
+      return res.status(500).json({
+        message: "Server error",
+      });
+    }
+  },
+  createNewTag: async (req, res) => {
+    try {
+      const { tag_name } = req.body;
 
-            const newTag = await Tag.create({
-                tag_name
-            })
+      const newTag = await Tag.create({
+        tag_name,
+      });
 
-            return res.status(201).json({
-                message: "Tag added",
-                result: newTag
-            })
+      return res.status(201).json({
+        message: "Tag added",
+        result: newTag,
+      });
+    } catch (err) {
+      console.log(err);
+      res.status(500).json({
+        message: "Server error",
+      });
+    }
+  },
+  deleteTag: async (req, res) => {
+    try {
+      const { id } = req.params;
 
-        } catch (err) {
-            console.log(err)
-            res.status(500).json({
-                message: "Server error"
-            })
-        }
-    },
-    updateTag: async (req, res) => {},
-    deleteTag: async (req, res) => {}
-}
+      const deleteTag = await Tag.destroy({
+        where: {
+          id,
+        },
+      });
 
-module.exports = tagControllers
+      return res.status(200).json({
+        message: "Tag deleted",
+        result: deleteTag,
+      });
+    } catch (err) {
+      console.log(err);
+      return res.status(500).json({
+        message: "Server error",
+      });
+    }
+  },
+};
+
+module.exports = tagControllers;

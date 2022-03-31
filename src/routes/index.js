@@ -1,5 +1,5 @@
-const tagRoutes = require("./tags")
+const tagRoutes = require("./tags");
 
 module.exports = {
-    tagRoutes
-}
+  tagRoutes,
+};

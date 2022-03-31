@@ -1,5 +1,5 @@
-const tagControllers = require("./tags")
+const tagControllers = require("./tags");
 
 module.exports = {
-    tagControllers
-}
+  tagControllers,
+};
