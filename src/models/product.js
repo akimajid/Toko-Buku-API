@@ -10,13 +10,9 @@ const Product = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    tags: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
     stock: {
       type: DataTypes.INTEGER,
-      allowNull: false
+      allowNull: false,
     },
   });
 };
