@@ -11,8 +11,18 @@ const sequelize = new Sequelize({
 
 // Models
 const Tag = require("../models/tag")(sequelize);
+const Product = require("../models/product")(sequelize)
+const Product_Tag = require("../models/product_tags")(sequelize)
+
+// Assosiations
+Tag.hasMany(Product_Tag, { foreignKey: "tag_id" })
+Product_Tag.belongsTo(Tag, { foreignKey: "tag_id" })
+Product.hasMany(Product_Tag, { foreignKey: "Product_id" })
+Product_Tag.belongsTo(Product, { foreignKey: "Product_id" })
 
 module.exports = {
   sequelize,
   Tag,
+  Product,
+  Product_Tag
 };
