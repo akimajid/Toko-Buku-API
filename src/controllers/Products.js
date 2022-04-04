@@ -33,7 +33,7 @@ const productControllers = {
   },
   createNewProduct: async (req, res) => {
     try {
-      const { book_name, cover, stock, tags } = req.body;
+      const { book_name, product_id, stock, tags } = req.body;
 
       const uploadFileDomain = process.env.UPLOAD_FILE_DOMAIN;
       const filePath = `product-cover-img`;
@@ -44,6 +44,7 @@ const productControllers = {
         defaults: {
           cover: `${uploadFileDomain}/${filePath}/${filename}`,
           stock,
+          product_id,
         },
       });
 

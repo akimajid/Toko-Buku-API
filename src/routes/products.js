@@ -1,7 +1,7 @@
-const router = require("express").Router()
-const { productControllers } = require("../controllers")
-const { Product } = require("../lib/sequelize")
+const productControllers = require("../controllers/products")
 const fileUploader = require("../lib/uploader")
+
+const router = require("express").Router()
 
 router.get("/", productControllers.getAllProduct)
 router.post("/",
@@ -13,3 +13,5 @@ fileUploader({
 productControllers.createNewProduct)
 router.patch("/:id", productControllers.editProduct)
 router.delete("/:id", productControllers.deleteProduct)
+
+module.exports = router
