@@ -18,9 +18,12 @@ app.get("/", (req, res) => {
   res.send("<h1>Toko buku API</h1>");
 });
 
-const { tagRoutes } = require("./routes");
+const { tagRoutes, ProductRoutes } = require("./routes");
+
+app.use("/product-cover", express.static(`${__dirname}/public/product_cover`))
 
 app.use("/tags", tagRoutes);
+app.use("/product", ProductRoutes)
 
 app.listen(PORT, () => {
   console.log("Listening to port", PORT);
